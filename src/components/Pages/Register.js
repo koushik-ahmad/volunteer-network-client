@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/AuthContext';
 import { toast } from 'react-hot-toast';
+import { setAuthToken } from '../../api/auth';
 
 const Register = () => {
     const [error, setError] = useState(null);
@@ -50,11 +51,11 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('Registration successful');
+                toast.success('Registration success');
 
                 updateName(name)
                     .then(() => {
-                        toast.success('Name updated');
+                        // toast.success('Name updated');
                         form.reset();
                     })
                     .catch(error => {
@@ -74,6 +75,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setAuthToken(user);
             })
             .catch(error => {
                 console.error(error);

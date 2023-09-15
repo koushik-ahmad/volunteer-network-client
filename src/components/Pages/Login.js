@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/AuthContext';
 import { toast } from 'react-hot-toast';
+import { setAuthToken } from '../../api/auth';
 
 const Login = () => {
     const { user, loginWithEmail, googleSignIn } = useContext(UserContext);
@@ -62,6 +63,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setAuthToken(user);
             })
             .catch(error => {
                 console.error(error);

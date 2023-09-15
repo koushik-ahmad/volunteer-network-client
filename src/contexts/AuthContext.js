@@ -25,7 +25,7 @@ const AuthContext = ({ children }) => {
         });
     }
 
-    // 3. Googlelogin 
+    // 3. GoogleSigIn 
     const googleSignIn = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider);
